@@ -9,8 +9,8 @@ ma = Marshmallow()
 def create_app():
     app = Flask(__name__)
 
-    # Configure your MySQL database URI here
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:YOUR_PASSWORD@localhost/ecommerce_api'
+    # Replace YOUR_PASSWORD with your actual MySQL root password
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:Austin78702!@localhost/ecommerce_api'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
@@ -18,7 +18,7 @@ def create_app():
 
     api = Api(app, version='1.0', title='E-Commerce API',
               description='An API for managing Users, Products, and Orders',
-              doc='/')  # Swagger UI served at /
+              doc='/')  # Swagger UI at /
 
     # Import your namespaces from route files
     from routes.user_routes import ns as user_ns
@@ -35,7 +35,7 @@ def create_app():
         return jsonify({"message": "API is running!"})
 
     with app.app_context():
-        db.create_all()
+        db.create_all()  # Creates tables if they don't exist
 
     return app
 
